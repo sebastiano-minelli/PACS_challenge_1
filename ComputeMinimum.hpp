@@ -16,10 +16,11 @@ public:
                                         1000.0,
                 const double tol_var_ = std::numeric_limits<double>::epsilon() *
                                       1000.0,
-                const double tol_grad_,
-                const bool compute_numeric_grad_,
-                const std::string min_method_,
-                const std::string step_method_):
+                const double tol_grad_ = std::numeric_limits<double>::epsilon() *
+                                      1000.0,
+                const bool compute_numeric_grad_ = false,
+                const std::string min_method_ = "GradientMethod",
+                const std::string step_method_ = "ExponentialDecay"):
     m_fun(fun_),
     m_grad_fun(grad_fun_),
     m_max_it(max_it_),
