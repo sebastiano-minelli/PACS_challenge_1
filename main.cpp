@@ -27,6 +27,7 @@ int main()
     while(std::cout << "Insert the dimension of the domain (i.e. the number of variables) " << std::endl && !(std::cin >> n))
     {
         std::cin.clear();
+        std::cin.ignore(1000, '\n');
         std::cout << "Wrong value provided" << std::endl;
     }
 
