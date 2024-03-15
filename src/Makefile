@@ -1,8 +1,8 @@
 CXX      ?= g++
 CXXFLAGS ?= -std=c++20
-#CPPFLAGS ?= -O3 -Wall -I. -Wno-conversion-null -Wno-deprecated-declarations -I../../../../../pacs-examples/Examples/include
+#CPPFLAGS ?= -O3 -Wall -I. -Wno-conversion-null -Wno-deprecated-declarations -I../../../../../../pacs-examples/Examples/include
 
-#LDFLAGS ?= -L../../../../../pacs-examples/Examples/lib
+#LDFLAGS ?= -L../../../../../../pacs-examples/Examples/lib
 #LIBS  ?= -lmuparser
 
 EXEC = main
