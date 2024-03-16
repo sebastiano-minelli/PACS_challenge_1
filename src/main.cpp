@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 {
   using namespace MuParserInterface;
 
-  constexpr unsigned int DIM = 2; // Domain dimension R^DIM
+  constexpr unsigned int DIM = 3; // Domain dimension R^DIM
 
   // bool compute_numeric_grad = false; // choice to compute gradient numerically instead of providing it directly
 
@@ -52,17 +52,17 @@ int main(int argc, char **argv)
   // recall that to evaluate expression I have to pass std::array<double, DIM> x;
 
   // min = compute_min(fun, grad_fun, compute_numeric_grad, toll_res, toll_var, toll_grad, max_it);
-  
-  std::cout << "Function:                  " << funString << std::endl;
-  std::cout << "Gradient of the function:  [1]: " << dfunString[0] << std::endl;
+  std::cout << "SELECTED OPTIONS" << std::endl;
+  std::cout << "- Function:                  " << funString << std::endl;
+  std::cout << "- Gradient of the function:  [1]: " << dfunString[0] << std::endl;
   for(size_t i = 1; i < DIM; ++i)
-    std::cout<< "                           [" << i + 1 << "]: " << dfunString[i] << std::endl;
+    std::cout<< "                             [" << i + 1 << "]: " << dfunString[i] << std::endl;
 
-  std::cout << "Maximum n. of iterations:  " << max_it << std::endl;
-  std::cout << "Residue tolerance:         " << tol_res << std::endl;
-  std::cout << "Argument tolerance:        " << tol_x << std::endl;
-  std::cout << "Solver type:               '" << solver_type << "'" << std::endl;
-  std::cout << "Step coefficient method:   '" << coeff_solver << "'" << std::endl;
+  std::cout << "- Maximum n. of iterations:  " << max_it << std::endl;
+  std::cout << "- Residue tolerance:         " << tol_res << std::endl;
+  std::cout << "- Argument tolerance:        " << tol_x << std::endl;
+  std::cout << "- Solver type:               '" << solver_type << "'" << std::endl;
+  std::cout << "- Step coefficient method:   '" << coeff_solver << "'" << std::endl;
 
 
   return 0;
