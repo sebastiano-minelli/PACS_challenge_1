@@ -17,6 +17,13 @@
     solver_type = 'GradientMethod'
 [../]
 [Compute_Coefficient_Method]
-# we have Exponential, ...
+# we have: 'Exponential', 'InverseDecay', 'Armijo'
     coeff_solver = 'Exponential'
+    [./Method_Options]
+        alpha_zero = 1.0
+        # mu is needed just for the inverse decay and exponential method
+        mu = 0.2
+        # sigma is needed just for the Armijo rule
+        sigma = 0.3
+    [../]
 [../]

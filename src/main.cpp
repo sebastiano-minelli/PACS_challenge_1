@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 
   // recall that to evaluate expression I have to pass std::array<double, DIM> x;
 
-  // min = compute_min(fun, grad_fun, compute_numeric_grad, toll_res, toll_var, toll_grad, max_it);
+  // Ouput read options
   std::cout << "SELECTED OPTIONS" << std::endl;
   std::cout << "- Function:                  " << funString << std::endl;
   std::cout << "- Gradient of the function:  [1]: " << dfunString[0] << std::endl;
@@ -64,6 +64,10 @@ int main(int argc, char **argv)
   std::cout << "- Solver type:               '" << solver_type << "'" << std::endl;
   std::cout << "- Step coefficient method:   '" << coeff_solver << "'" << std::endl;
 
+  
 
+
+
+  // min = compute_min(fun, grad_fun, compute_numeric_grad, toll_res, toll_var, toll_grad, max_it);
   return 0;
 }
