@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 {
   using namespace MuParserInterface;
 
-  constexpr unsigned int DIM = 3; // Domain dimension R^DIM
+  static constexpr unsigned int DIM = 3; // Domain dimension R^DIM
 
   // bool compute_numeric_grad = false; // choice to compute gradient numerically instead of providing it directly
 
@@ -64,7 +64,7 @@ int main(int argc, char **argv)
   std::cout << "- Solver type:               '" << solver_type << "'" << std::endl;
   std::cout << "- Step coefficient method:   '" << coeff_solver << "'" << std::endl;
 
-  
+
 
 
 
