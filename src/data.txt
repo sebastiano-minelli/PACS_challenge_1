@@ -1,0 +1,21 @@
+#-------------------------------------------------
+# Solver Options
+#-------------------------------------------------
+[Parameters]
+    max_it = 100
+    tol_res = 1e-6
+    tol_x = 1e-6
+[../]
+[Functions]
+    fun = 'x*x*x + 5*x + 3'
+    grad_fun_1 = '3*x*x + 5'
+    grad_fun_2 = '3'
+[../]
+[Solver_Type]
+# just GradientMethod for now
+    solver_type = 'GradientMethod'
+[../]
+[Compute_Coefficient_Method]
+# we have Exponential, ...
+    coeff_solver = 'Exponential'
+[../]

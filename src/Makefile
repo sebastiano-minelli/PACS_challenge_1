@@ -1,21 +1,22 @@
 CXX      ?= g++
 CXXFLAGS ?= -std=c++20
-#CPPFLAGS ?= -O3 -Wall -I. -Wno-conversion-null -Wno-deprecated-declarations -I../../../../../../pacs-examples/Examples/include
+CPPFLAGS ?= -O0 -Wall -I. -Wno-conversion-null -Wno-deprecated-declarations -I../../../../pacs-examples/Examples/include/muparserx
 
-#LDFLAGS ?= -L../../../../../../pacs-examples/Examples/lib
-#LIBS  ?= -lmuparser
+#LDFLAGS ?= -L../../../../pacs-examples/Examples/lib
+#LIBS  ?= -lmuparserx
 
 EXEC = main
 OBJECT = main.cpp
+STATIC_LIB = ../../../../pacs-examples/Examples/lib/libmuparserx.a
 COMP = main.o
 
 .PHONY = clean distclean
 
 EXECUTE: COMPILE
-	$(CXX) $(CXXFLAGS) $(COMP) -o $(EXEC)
+	$(CXX) $(CXXFLAGS) $(COMP) $(STATIC_LIB) -o $(EXEC)
 	
 COMPILE:
-	$(CXX) $(CXXFLAGS) $(OBJECT) -c $(COMP)
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OBJECT) -c
 	
 clean:
 	$(RM) *.o

@@ -1,44 +1,69 @@
 #include<iostream>
-#include<functional>
 #include<string>
+#include<cstring>
 #include<vector>
-// #include<Eigen>
+#include<iomanip>
+#include "GetPot"
+#include "muParserXInterface.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
-    typedef double domain_type; //type of the domain
-    typedef double codomain_type; //type of the codomain
+  using namespace MuParserInterface;
 
-    std::vector<domain_type> vectors;
+  constexpr unsigned int DIM = 2; // Domain dimension R^DIM
 
-    unsigned int n = 0; // dimension of the domain
-    double min = 0.0; // minimum
-    double toll_res = 0.0; // tolerance for the residual
-    double toll_var = 0.0; // tolerance for the variation
-    double toll_grad = 0.0; // tolerance for the gradient
-    double max_it = 0.0; // maximum number of iterations
-    std::string min_method; // method to use to compute the minimum
-    std::string step_method; // method to use to compute the step coefficient
+  // bool compute_numeric_grad = false; // choice to compute gradient numerically instead of providing it directly
 
-    bool compute_numeric_grad = false; // choice to compute gradient numerically instead of providing it directly
-    std::function<codomain_type(std::vector<domain_type>)> fun; // function
-    std::function<std::vector<codomain_type>(std::vector<domain_type>)> grad_fun; // function gradient
+  // GetPot reads from file
+  GetPot datafile("data.txt");
+  std::string section = "Parameters/";
 
-    while(std::cout << "Insert the dimension of the domain (i.e. the number of variables) " << std::endl && !(std::cin >> n))
-    {
-        std::cin.clear();
-        std::cin.ignore(1000, '\n');
-        std::cout << "Wrong value provided" << std::endl;
-    }
+  const unsigned int max_it = datafile((section + "max_it").data(), 50); // Maximum numebr of iterations
+  const double tol_res = datafile((section + "tol_res").data(), 1.0e-3); // tolerance for the variation on the codomain
+  const double tol_x = datafile((section + "tol_x").data(), 1.0e-3); // tolerance for the variation on the domain
+
+  section = "Functions/";
+  std::string funString = datafile((section + "fun").data(), " "); // function
+  std::vector<std::string> dfunString(DIM, " "); // gradient of the function
+  for(size_t i = 0; i < DIM; ++i)
+  {
+    // evaluate the right term of the gradient vector
+    std::string scalar_place = std::to_string(i + 1);
+    dfunString[i] = datafile((section + "grad_fun_" + scalar_place).data(), " "); // function derivative
+  }
+
+  section = "Solver_Type/";
+  std::string solver_type = datafile((section + "solver_type").data(), "GradientMethod"); // Solver choice
+
+  section = "Compute_Coefficient_Method/";
+  std::string coeff_solver = datafile((section + "coeff_solver").data(), "Exponential"); // Step coefficient choice
 
 
-    ///// implementing a function to read user parameters ////
+  // Creating muParserX function and respective gradient
+  muParserXInterface<DIM> fun(funString);
 
-   
+  std::vector<muParserXInterface<DIM>> dfun;
+  for(size_t i = 0; i < DIM; ++i)
+  {
+    dfun.emplace_back(dfunString[i]);
+  }
+  
 
-    // min = compute_min(fun, grad_fun, compute_numeric_grad, toll_res, toll_var, toll_grad, max_it);
+  // recall that to evaluate expression I have to pass std::array<double, DIM> x;
 
-    std::cout << "The minimum is: " << min << std::endl;
+  // min = compute_min(fun, grad_fun, compute_numeric_grad, toll_res, toll_var, toll_grad, max_it);
+  
+  std::cout << "Function:                  " << funString << std::endl;
+  std::cout << "Gradient of the function:  [1]: " << dfunString[0] << std::endl;
+  for(size_t i = 1; i < DIM; ++i)
+    std::cout<< "                           [" << i + 1 << "]: " << dfunString[i] << std::endl;
 
-    return 0;
+  std::cout << "Maximum n. of iterations:  " << max_it << std::endl;
+  std::cout << "Residue tolerance:         " << tol_res << std::endl;
+  std::cout << "Argument tolerance:        " << tol_x << std::endl;
+  std::cout << "Solver type:               '" << solver_type << "'" << std::endl;
+  std::cout << "Step coefficient method:   '" << coeff_solver << "'" << std::endl;
+
+
+  return 0;
 }
