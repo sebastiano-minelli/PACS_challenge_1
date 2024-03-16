@@ -1,10 +1,11 @@
 #ifndef HH_STEP_COEFFICIENT_BASE_HH
 #define HH_STEP_COEFFICIENT_BASE_HH
 
+template <unsigned int DIM>
 class StepCoefficientBase
 {
 public:
-    StepCoefficientBase(const double alpha_zero, const unsigned int DIM) : m_alpha_zero(alpha_zero), m_DIM(DIM) {};
+    StepCoefficientBase(const double alpha_zero) : m_alpha_zero(alpha_zero) {};
 
     virtual ~StepCoefficientBase() = default;
 
@@ -13,7 +14,6 @@ public:
 
 protected:
     const double m_alpha_zero;
-    const unsigned int m_DIM;
 };
 
 #endif

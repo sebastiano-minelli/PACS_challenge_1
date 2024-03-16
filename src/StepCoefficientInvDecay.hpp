@@ -5,14 +5,15 @@
 #include<cmath>
 #include "StepCoefficientBase.hpp"
 
-class StepCoefficientInvDecay : public StepCoefficientBase
+template <unsigned int DIM>
+class StepCoefficientInvDecay : public StepCoefficientBase<DIM>
 {
 public:
-    StepCoefficientInvDecay(const double alpha_zero, const unsigned int DIM, const double mu = 0.2) : StepCoefficientBase(alpha_zero, DIM), m_mu(mu) {};
+    StepCoefficientInvDecay(const double alpha_zero, const double mu = 0.2) : StepCoefficientBase<DIM>(alpha_zero), m_mu(mu) {};
 
     double compute_alpha_k(const unsigned int step) const override
     {
-        double alpha_k =  m_alpha_zero / ( 1 + m_mu * static_cast<double>(step) );
+        double alpha_k =  this->m_alpha_zero / ( 1 + m_mu * static_cast<double>(step) );
         return alpha_k;
     }
 

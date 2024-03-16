@@ -3,8 +3,13 @@
 #include<cstring>
 #include<vector>
 #include<iomanip>
+#include<memory>
 #include "GetPot"
 #include "muParserXInterface.hpp"
+#include "StepCoefficientBase.hpp"
+#include "StepCoefficientInvDecay.hpp"
+#include "StepCoefficientExp.hpp"
+#include "StepCoefficientArmijo.hpp"
 
 int main(int argc, char **argv)
 {
@@ -31,6 +36,8 @@ int main(int argc, char **argv)
     std::string scalar_place = std::to_string(i + 1);
     dfunString[i] = datafile((section + "grad_fun_" + scalar_place).data(), " "); // function derivative
   }
+
+  
 
   section = "Solver_Type/";
   std::string solver_type = datafile((section + "solver_type").data(), "GradientMethod"); // Solver choice
@@ -64,7 +71,12 @@ int main(int argc, char **argv)
   std::cout << "- Solver type:               '" << solver_type << "'" << std::endl;
   std::cout << "- Step coefficient method:   '" << coeff_solver << "'" << std::endl;
 
-
+  double alpha_zero = 1.0;
+  double mu = 0.2;
+  std::array<double, DIM> x = {1, 2, 3};
+  std::unique_ptr<StepCoefficientBase<DIM>> step_coeff = std::make_unique<StepCoefficientArmijo<DIM>>(alpha_zero, mu, x, fun, dfun);
+  double alpha_k = step_coeff->compute_alpha_k(10);
+  std::cout << "Alpha_k: " << alpha_k << std::endl;
 
 
 
