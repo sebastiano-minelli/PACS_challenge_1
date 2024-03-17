@@ -7,19 +7,19 @@ CPPFLAGS ?= -O0 -Wall -I. -Wno-conversion-null -Wno-deprecated-declarations -I..
 
 EXEC = main
 OBJECT = main.cpp
-OBJECT2 = StepCoefficientArmijo.cpp
+# OBJECT2 = StepCoefficientArmijo.cpp
 STATIC_LIB = ../../../../pacs-examples/Examples/lib/libmuparserx.a
-COMP = main.o StepCoefficientArmijo.o
+COMP = main.o
 
 .PHONY = clean distclean
 
 EXECUTE: COMPILE
 	$(CXX) $(CXXFLAGS) $(COMP) $(STATIC_LIB) -o $(EXEC)
 	
-COMPILE: COMPILE2
+COMPILE:
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OBJECT) -c
-COMPILE2:
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OBJECT2) -c	
+#COMPILE2:
+#	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OBJECT2) -c	
 clean:
 	$(RM) *.o
 	

@@ -7,10 +7,10 @@
     tol_x = 1e-6
 [../]
 [Functions]
-    fun = 'x*x*x + 5*x + 3'
-    grad_fun_1 = '3*x*x + 5'
-    grad_fun_2 = '3'
-    grad_fun_3 = '5 * x'
+    fun = '3 * x[0] + 2 * x[1] + x[2]'
+    grad_fun_1 = '3'
+    grad_fun_2 = '2'
+    grad_fun_3 = '1'
 [../]
 [Solver_Type]
 # just GradientMethod for now

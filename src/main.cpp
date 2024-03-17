@@ -71,8 +71,8 @@ int main(int argc, char **argv)
   std::cout << "- Solver type:               '" << solver_type << "'" << std::endl;
   std::cout << "- Step coefficient method:   '" << coeff_solver << "'" << std::endl;
 
-  double alpha_zero = 1.0;
-  double mu = 0.2;
+  double alpha_zero = 0.00000000001;
+  double mu = 0.5;
   std::array<double, DIM> x = {1, 2, 3};
   std::unique_ptr<StepCoefficientBase<DIM>> step_coeff = std::make_unique<StepCoefficientArmijo<DIM>>(alpha_zero, mu, x, fun, dfun);
   double alpha_k = step_coeff->compute_alpha_k(10);
