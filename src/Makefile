@@ -1,6 +1,6 @@
 CXX      ?= g++
 CXXFLAGS ?= -std=c++20
-CPPFLAGS ?= -O0 -Wall -I. -Wno-conversion-null -Wno-deprecated-declarations -I../../../../pacs-examples/Examples/include/muparserx
+CPPFLAGS ?= -O3 -Wall -I. -I./lib -Wno-conversion-null -Wno-deprecated-declarations -I../../../../pacs-examples/Examples/include/muparserx
 
 #LDFLAGS ?= -L../../../../pacs-examples/Examples/lib
 #LIBS  ?= -lmuparserx

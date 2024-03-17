@@ -29,7 +29,7 @@ public:
     {
         const unsigned int n_max_it = 10000; // maximum number of iterations
         unsigned int it = 0; // iterations
-        const double min_tol = std::numeric_limits<double>::epsilon() * 1000.0; // minimum tolerance
+        const double min_tol = std::numeric_limits<double>::epsilon() * 100.0; // minimum tolerance
 
 
         double alpha_k = 2.0 * this->m_alpha_zero;
