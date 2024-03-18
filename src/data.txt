@@ -41,7 +41,7 @@
 
     ### Minimization method to use
     # possible options are: 'Gradient', 'HeavyBall', 'Nesterov' #
-    solver_type = 'HeavyBall'
+    solver_type = 'Nesterov'
 
 [../]
 
@@ -53,7 +53,10 @@
 
     [./Method_Options]
         ### Coefficient used at the first iteration of the minimization method
-        alpha_zero = 0.1
+        # standard alpha_zeros: 
+        # 'Gradient' alpha_zero = 0.1
+        # 'Nesterov' alpha_zero = 0.06 
+        alpha_zero = 0.06
 
         ### Parameter for the step coefficient method (needed just for 'InverseDecay' and 'Exponential' method)
         mu = 0.2
