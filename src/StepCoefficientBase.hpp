@@ -1,19 +1,20 @@
 #ifndef HH_STEP_COEFFICIENT_BASE_HH
 #define HH_STEP_COEFFICIENT_BASE_HH
 
+#include "ParameterHandler.hpp"
+
 template <unsigned int DIM>
 class StepCoefficientBase
 {
 public:
-    StepCoefficientBase(const double alpha_zero) : m_alpha_zero(alpha_zero) {};
+    StepCoefficientBase(ParameterHandler<DIM>& param) : m_param(param) {};
 
     virtual ~StepCoefficientBase() = default;
 
     // compute the step parameter alpha_k
-    virtual double compute_alpha_k(const unsigned int step) const = 0;
+    virtual double compute_alpha_k(const unsigned int step) = 0;
 
-protected:
-    const double m_alpha_zero;
+    ParameterHandler<DIM> m_param;
 };
 
 #endif

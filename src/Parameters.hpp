@@ -39,6 +39,9 @@ struct Coefficients
 struct StepCoeffMethod
 { // method to use to solve the step coefficient parameter
   std::string coeff_solver; // 'Exponential', 'InverseDecay', 'Armijo' 
+  double alpha_zero;
+  double mu;
+  double sigma;
 };
 
 struct MinMethod
@@ -89,6 +92,10 @@ public:
 
     section = "Compute_Coefficient_Method/";
     step_coeff_method.coeff_solver = datafile((section + "coeff_solver").data(), "Exponential"); // Step coefficient choice
+    step_coeff_method.alpha_zero = datafile((section + "/Method_Options" + "alpha_zero").data(), 0.5); //alpha zero
+    step_coeff_method.mu = datafile((section + "/Method_Options" + "mu").data(), 0.5); //mu
+    step_coeff_method.sigma = datafile((section + "/Method_Options" + "sigma").data(), 0.5); //sigma
+
 
 
     // Creating muParserX function and respective gradient
@@ -104,7 +111,6 @@ public:
     }
   }
 
-protected:
   Function<DIM> function_param;
   Coefficients coefficients;
   StepCoeffMethod step_coeff_method;

@@ -35,6 +35,7 @@ public:
                 dfun_eval[i] = (this->function_param.fun(x_plus) - this->function_param.fun(x_minus)) /  (2 * this->coefficients.h);
             }
         }
+        
         return dfun_eval;
     };
 
@@ -61,9 +62,11 @@ public:
         std::cout << "- Finite difference increment:  " << this->coefficients.h << std::endl;
         std::cout << "- Solver type:                  '" << this->min_method.solver_type << "'" << std::endl;
         std::cout << "- Step coefficient method:      '" << this->step_coeff_method.coeff_solver << "'" << std::endl;
+        std::cout << "- Step coefficient alpha_0:     '" << this->step_coeff_method.alpha_zero << "'" << std::endl;
+        std::cout << "- Step coefficient mu:          '" << this->step_coeff_method.mu << "'" << std::endl;
+        std::cout << "- Step coefficient sigma:       '" << this->step_coeff_method.sigma << "'" << std::endl;
     };
 
-private:
     double m_dfun_num; // numeric function gradient
     double m_min;
 };

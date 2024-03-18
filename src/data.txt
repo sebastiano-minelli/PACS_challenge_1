@@ -8,6 +8,7 @@
     compute_num_grad = 1 # 1=true, 0=false
     h = 0.0001
 [../]
+
 [Functions]
     fun = 'sin(x[0]) + 2 * x[1] + x[2]'
     grad_fun_1 = 'cos(x[0])'
@@ -17,13 +18,16 @@
     x_2 = 2.0
     x_3 = 3.0
 [../]
+
 [Solver_Type]
 # just GradientMethod for now
     solver_type = 'GradientMethod'
 [../]
+
 [Compute_Coefficient_Method]
 # we have: 'Exponential', 'InverseDecay', 'Armijo'
-    coeff_solver = 'Exponential'
+    coeff_solver = 'Armijo'
+
     [./Method_Options]
         alpha_zero = 1.0
         # mu is needed just for the inverse decay and exponential method

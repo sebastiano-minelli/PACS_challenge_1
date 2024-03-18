@@ -9,16 +9,13 @@ template <unsigned int DIM>
 class StepCoefficientInvDecay : public StepCoefficientBase<DIM>
 {
 public:
-    StepCoefficientInvDecay(const double alpha_zero, const double mu = 0.2) : StepCoefficientBase<DIM>(alpha_zero), m_mu(mu) {};
+    StepCoefficientInvDecay(ParameterHandler<DIM> & param) : StepCoefficientBase<DIM>(param) {};
 
-    double compute_alpha_k(const unsigned int step) const override
+    double compute_alpha_k(const unsigned int step) override
     {
-        double alpha_k =  this->m_alpha_zero / ( 1 + m_mu * static_cast<double>(step) );
+        double alpha_k =  this->m_param.step_coeff_method.alpha_zero / ( 1 + this->m_param.step_coeff_method.mu * static_cast<double>(step) );
         return alpha_k;
     }
-
-private:
-    const double m_mu;
 
 };
 

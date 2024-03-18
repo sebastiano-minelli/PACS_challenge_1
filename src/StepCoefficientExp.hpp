@@ -9,16 +9,13 @@ template <unsigned int DIM>
 class StepCoefficientExp : public StepCoefficientBase<DIM>
 {
 public:
-    StepCoefficientExp(const double alpha_zero, const double mu = 0.2) : StepCoefficientBase<DIM>(alpha_zero), m_mu(mu) {};
+    StepCoefficientExp(ParameterHandler<DIM> & param) : StepCoefficientBase<DIM>(param) {};
 
-    double compute_alpha_k(const unsigned int step) const override
+    double compute_alpha_k(const unsigned int step) override
     {
-        double alpha_k =  this->m_alpha_zero * exp(- m_mu * static_cast<double>(step));
+        double alpha_k =  this->m_param.step_coeff_method.alpha_zero * exp(- this->m_param.step_coeff_method.mu * static_cast<double>(step));
         return alpha_k;
     }
-
-private:
-    const double m_mu;
 
 };
 

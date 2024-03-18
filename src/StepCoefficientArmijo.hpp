@@ -1,7 +1,7 @@
 #ifndef HH_STEP_COEFFICIENT_ARMIJO_HH
 #define HH_STEP_COEFFICIENT_ARMIJO_HH
 
-
+#include <iostream>
 #include<cmath>
 #include<vector>
 #include<array>
@@ -12,54 +12,40 @@ template <unsigned int DIM>
 class StepCoefficientArmijo : public StepCoefficientBase<DIM>
 {
 public:
-    StepCoefficientArmijo(const double alpha_zero,
-                         const double sigma = 0.3, 
-                         const std::array<double, DIM> x = {},
-                         const MuParserInterface::muParserXInterface<DIM> fun = " ",
-                         const std::vector<MuParserInterface::muParserXInterface<DIM>> dfun = " ") : 
-
-    StepCoefficientBase<DIM>(alpha_zero), 
-    m_sigma(sigma),
-    m_fun(fun),
-    m_dfun(dfun),
-    m_x(x) 
+    StepCoefficientArmijo(ParameterHandler<DIM> & param) : StepCoefficientBase<DIM>(param)
     {};
 
-    double compute_alpha_k(const unsigned int step) const override
+    double compute_alpha_k(const unsigned int step) override
     {
         const unsigned int n_max_it = 10000; // maximum number of iterations
         unsigned int it = 0; // iterations
         const double min_tol = std::numeric_limits<double>::epsilon() * 100.0; // minimum tolerance
 
 
-        double alpha_k = 2.0 * this->m_alpha_zero;
+        double alpha_k = 2.0 * this->m_param.step_coeff_method.alpha_zero;
 
         // compute argouments
         std::array<double, DIM> y;
 
         double L2norm = 0.0;
+        std::vector<double> grad_eval = this->m_param.compute_gradient();
+        
         for(size_t i = 0; i < DIM; ++i)
-            L2norm += m_dfun[i](m_x) * m_dfun[i](m_x);
+            L2norm += grad_eval[i] * grad_eval[i];
 
         do
         {   
             alpha_k = alpha_k * 0.5;
             for(size_t i = 0; i < DIM; ++i)
-                y[i] = m_x[i] - alpha_k * m_dfun[i](m_x);
+                y[i] = this->m_param.function_param.x[i] - alpha_k * grad_eval[i];
 
-        }while(m_fun(m_x) - m_fun(y) >= m_sigma * alpha_k * L2norm
+        }while(this->m_param.function_param.fun(this->m_param.function_param.x) - this->m_param.function_param.fun(y) >= this->m_param.step_coeff_method.sigma * alpha_k * L2norm
                 && it++ < n_max_it
                 && alpha_k > min_tol );
 
         return alpha_k;
     
     };
-
-private:
-    const double m_sigma;
-    const MuParserInterface::muParserXInterface<DIM> m_fun;
-    const std::vector<MuParserInterface::muParserXInterface<DIM>> m_dfun;
-    const std::array<double, DIM> m_x;
 
 };
 
