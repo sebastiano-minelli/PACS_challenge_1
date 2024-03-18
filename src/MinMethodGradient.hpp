@@ -2,8 +2,8 @@
 #define HH_MINMETHODGRADIENT_HH
 
 #include "MinMethodBase.hpp"
-#include<vector>
-#include<array>
+#include <vector>
+#include <array>
 
 template<unsigned int DIM>
 class MinMethodGradient : public MinMethodBase<DIM>
@@ -28,15 +28,13 @@ public:
         double tol_x = this->m_param.coefficients.tol_x;
 
 
-        for(size_t i = 0; i < max_it && res > tol_res && x_norm > tol_x; ++i)
+        for(size_t k = 0; k < max_it && res > tol_res && x_norm > tol_x; ++k)
         {
-            alpha_k = this->m_step_handl.get_alpha_k(i);
+            alpha_k = this->m_step_handl.get_alpha_k(k);
             grad_k = this->m_param.compute_gradient();
 
             for(size_t j = 0; j < DIM; ++j)
-            {
                 xnew[j] = xold[j] - alpha_k * grad_k[j];
-            }
             
             x_norm = 0.0;
             // compute x norm
@@ -46,7 +44,7 @@ public:
                 x_norm = sqrt(x_norm);
             }
 
-            res = this->m_param.function_param.fun(xnew);
+            res = abs(this->m_param.function_param.fun(xnew) - this->m_param.function_param.fun(xold));
 
             xold = xnew;
         }

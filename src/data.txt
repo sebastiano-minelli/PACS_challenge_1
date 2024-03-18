@@ -5,7 +5,7 @@
     max_it = 1000
     tol_res = 1e-6
     tol_x = 1e-6
-    compute_num_grad = 1 # 1=true, 0=false
+    compute_num_grad = 0  # 1=true, 0=false
     h = 0.0001
 [../]
 
@@ -33,6 +33,6 @@
         # mu is needed just for the inverse decay and exponential method
         mu = 0.2
         # sigma is needed just for the Armijo rule
-        sigma = 0.3
+        sigma = 0.5
     [../]
 [../]

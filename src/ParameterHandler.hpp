@@ -39,21 +39,22 @@ public:
 
     void show_data() const
     {
-        std::cout << "SELECTED OPTIONS\n" << std::endl;
+        std::cout << "--------------- SELECTED OPTIONS ---------------\n" << std::endl;
         std::cout << "- Function:                     " << this->function_param.funString << "\n" << std::endl;
         if(!this->coefficients.compute_num_grad)
         {
-            std::cout << "- Gradient of the function:     [1]: " << this->function_param.dfunString[0] << std::endl;
+            std::cout << "- Gradient of the function:     {1}: " << this->function_param.dfunString[0] << std::endl;
             for(size_t i = 1; i < DIM; ++i)
-                std::cout<< "                                [" << i + 1 << "]: " << this->function_param.dfunString[i] << std::endl;
+                std::cout<< "                                {" << i + 1 << "}: " << this->function_param.dfunString[i] << std::endl;
         }else
         {
             std::cout << "- Gradient of the function:     none" << std::endl;
         }
         std::cout << "\n" << std::endl;
-        std::cout << "- Initial point:                [1]: " << this->function_param.x[0] << "\n" << std::endl;
+        std::cout << "- Initial point:                {1}: " << this->function_param.x[0] << std::endl;
         for(size_t i = 1; i < DIM; ++i)
-            std::cout<< "                                [" << i + 1 << "]: " << this->function_param.x[i] << std::endl;
+            std::cout<< "                                {" << i + 1 << "}: " << this->function_param.x[i] << std::endl;
+        std::cout << "\n" << std::endl;
         std::cout << "- Maximum n. of iterations:     " << this->coefficients.max_it << "\n" << std::endl;
         std::cout << "- Residue tolerance:            " << this->coefficients.tol_res << "\n" << std::endl;
         std::cout << "- Argument tolerance (L2 norm): " << this->coefficients.tol_x << "\n" << std::endl;
