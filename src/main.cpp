@@ -11,29 +11,27 @@
 #include "StepCoefficientExp.hpp"
 #include "StepCoefficientArmijo.hpp"
 #include "StepCoefficientHandler.hpp"
+#include "MinMethodGradient.hpp"
 
 int main()
 {
 
-  static constexpr unsigned int DIM = 3; // Domain dimension R^DIM
+  static constexpr unsigned int DIM = 2; // Domain dimension R^DIM
 
   ParameterHandler<DIM> p("data.txt"); // parameters
-  StepCoefficientHandler<DIM> step_coeff(p);
 
   p.show_data();
 
-  std::shared_ptr pointer = step_coeff.get_step_method();
-  double alpha_k = pointer->compute_alpha_k(10);
-  std::cout << "Alpha k " << alpha_k << std::endl;
+  StepCoefficientHandler<DIM> step_coeff(p);
+
+  MinMethodGradient<DIM> min_method(p);
+
+  std::array<double, DIM> min = min_method.compute_min();
+
+  std::cout << "The minimum is:" << std::endl;
+  for(size_t i = 0; i < DIM; ++i)
+    std::cout << "[" << i + 1 << "]: " << min[i] << std::endl;
   
 
-
-  std::vector<double> grad = p.compute_gradient();
-  for(const auto & a : grad)
-    std::cout << "Gradient " << a << std::endl;
-
-  
-
-  // min = compute_min(fun, grad_fun, compute_numeric_grad, toll_res, toll_var, toll_grad, max_it);
   return 0;
 }

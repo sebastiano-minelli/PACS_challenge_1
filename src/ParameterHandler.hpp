@@ -10,9 +10,7 @@ class ParameterHandler : public Parameters<DIM>
 {
 public:
     ParameterHandler(const std::string &filename) :
-        Parameters<DIM>(filename),
-        m_dfun_num(0.0),
-        m_min(0.0)
+        Parameters<DIM>(filename)
     {};
 
     // function that handles automatically the analytic or numeric gradient
@@ -41,8 +39,8 @@ public:
 
     void show_data() const
     {
-        std::cout << "SELECTED OPTIONS" << std::endl;
-        std::cout << "- Function:                     " << this->function_param.funString << std::endl;
+        std::cout << "SELECTED OPTIONS\n" << std::endl;
+        std::cout << "- Function:                     " << this->function_param.funString << "\n" << std::endl;
         if(!this->coefficients.compute_num_grad)
         {
             std::cout << "- Gradient of the function:     [1]: " << this->function_param.dfunString[0] << std::endl;
@@ -52,23 +50,21 @@ public:
         {
             std::cout << "- Gradient of the function:     none" << std::endl;
         }
-        std::cout << "- Initial point:                [1]: " << this->function_param.x[0] << std::endl;
+        std::cout << "\n" << std::endl;
+        std::cout << "- Initial point:                [1]: " << this->function_param.x[0] << "\n" << std::endl;
         for(size_t i = 1; i < DIM; ++i)
-        std::cout<< "                                [" << i + 1 << "]: " << this->function_param.x[i] << std::endl;
-        std::cout << "- Maximum n. of iterations:     " << this->coefficients.max_it << std::endl;
-        std::cout << "- Residue tolerance:            " << this->coefficients.tol_res << std::endl;
-        std::cout << "- Argument tolerance:           " << this->coefficients.tol_x << std::endl;
-        std::cout << "- Compute numeric gradient:     " << this->coefficients.compute_num_grad << std::endl;
-        std::cout << "- Finite difference increment:  " << this->coefficients.h << std::endl;
-        std::cout << "- Solver type:                  '" << this->min_method.solver_type << "'" << std::endl;
-        std::cout << "- Step coefficient method:      '" << this->step_coeff_method.coeff_solver << "'" << std::endl;
-        std::cout << "- Step coefficient alpha_0:     '" << this->step_coeff_method.alpha_zero << "'" << std::endl;
-        std::cout << "- Step coefficient mu:          '" << this->step_coeff_method.mu << "'" << std::endl;
-        std::cout << "- Step coefficient sigma:       '" << this->step_coeff_method.sigma << "'" << std::endl;
+            std::cout<< "                                [" << i + 1 << "]: " << this->function_param.x[i] << std::endl;
+        std::cout << "- Maximum n. of iterations:     " << this->coefficients.max_it << "\n" << std::endl;
+        std::cout << "- Residue tolerance:            " << this->coefficients.tol_res << "\n" << std::endl;
+        std::cout << "- Argument tolerance (L2 norm): " << this->coefficients.tol_x << "\n" << std::endl;
+        std::cout << "- Compute numeric gradient:     " << this->coefficients.compute_num_grad << "\n" << std::endl;
+        std::cout << "- Finite difference increment:  " << this->coefficients.h << "\n" << std::endl;
+        std::cout << "- Solver type:                  '" << this->min_method.solver_type << "'" << "\n" << std::endl;
+        std::cout << "- Step coefficient method:      '" << this->step_coeff_method.coeff_solver << "'" << "\n" << std::endl;
+        std::cout << "- Step coefficient alpha_0:     '" << this->step_coeff_method.alpha_zero << "'" << "\n" << std::endl;
+        std::cout << "- Step coefficient mu:          '" << this->step_coeff_method.mu << "'" << "\n" << std::endl;
+        std::cout << "- Step coefficient sigma:       '" << this->step_coeff_method.sigma << "'" << "\n" << std::endl;
     };
-
-    double m_dfun_num; // numeric function gradient
-    double m_min;
 };
 
 

@@ -24,10 +24,9 @@ public:
             step_coeff_method = std::make_shared<StepCoefficientArmijo<DIM>>(param);
     };
 
-    const std::shared_ptr<StepCoefficientBase<DIM>> get_step_method() const
+    const double get_alpha_k(const unsigned int k) const
     {
-        std::cout << "Selected method " << m_param.step_coeff_method.coeff_solver << std::endl;
-        return step_coeff_method;
+        return step_coeff_method->compute_alpha_k(k);
     }
     
 private:

@@ -60,11 +60,11 @@ public:
 
     std::string section = "Parameters/";
 
-    coefficients.max_it = datafile((section + "max_it").data(), 50);
-    coefficients.tol_res = datafile((section + "tol_res").data(), 1.0e-3);
-    coefficients.tol_x = datafile((section + "tol_x").data(), 1.0e-3);
-    coefficients.compute_num_grad = datafile((section + "compute_num_grad").data(), false);
-    coefficients.h = datafile((section + "h").data(), 0.1);
+    coefficients.max_it = datafile((section + "max_it").data(), 500);
+    coefficients.tol_res = datafile((section + "tol_res").data(), 1.0e-5);
+    coefficients.tol_x = datafile((section + "tol_x").data(), 1.0e-5);
+    coefficients.compute_num_grad = datafile((section + "compute_num_grad").data(), true);
+    coefficients.h = datafile((section + "h").data(), 0.001);
 
     section = "Functions/";
     function_param.funString = datafile((section + "fun").data(), " ");
@@ -92,9 +92,9 @@ public:
 
     section = "Compute_Coefficient_Method/";
     step_coeff_method.coeff_solver = datafile((section + "coeff_solver").data(), "Exponential"); // Step coefficient choice
-    step_coeff_method.alpha_zero = datafile((section + "/Method_Options" + "alpha_zero").data(), 0.5); //alpha zero
-    step_coeff_method.mu = datafile((section + "/Method_Options" + "mu").data(), 0.5); //mu
-    step_coeff_method.sigma = datafile((section + "/Method_Options" + "sigma").data(), 0.5); //sigma
+    step_coeff_method.alpha_zero = datafile((section + "Method_Options/" + "alpha_zero").data(), 0.5); //alpha zero
+    step_coeff_method.mu = datafile((section + "Method_Options/" + "mu").data(), 0.2); //mu
+    step_coeff_method.sigma = datafile((section + "Method_Options/" + "sigma").data(), 0.3); //sigma
 
 
 
@@ -103,12 +103,8 @@ public:
     function_param.fun = dummy_fun;
     
     if(!coefficients.compute_num_grad)
-    {
       for(size_t i = 0; i < DIM; ++i)
-      {
         function_param.dfun.emplace_back(function_param.dfunString[i]);
-      }
-    }
   }
 
   Function<DIM> function_param;
