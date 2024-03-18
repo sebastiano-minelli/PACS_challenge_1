@@ -1,14 +1,13 @@
+### change PACS_EXAMPLES_PATH pasting your machine path to 'pacs-examples' git folder
+PACS_EXAMPLES_PATH=../../../../pacs-examples
+
 CXX      ?= g++
 CXXFLAGS ?= -std=c++20
-CPPFLAGS ?= -O5 -Wall -I. -I./lib -Wno-conversion-null -Wno-deprecated-declarations -I../../../../pacs-examples/Examples/include/muparserx
-
-#LDFLAGS ?= -L../../../../pacs-examples/Examples/lib
-#LIBS  ?= -lmuparserx
+CPPFLAGS ?= -O5 -Wall -I. -I../lib -Wno-conversion-null -Wno-deprecated-declarations -I$(PACS_EXAMPLES_PATH)/Examples/include/muparserx
 
 EXEC = main
 OBJECT = main.cpp
-# OBJECT2 = StepCoefficientArmijo.cpp
-STATIC_LIB = ../../../../pacs-examples/Examples/lib/libmuparserx.a
+STATIC_LIB = $(PACS_EXAMPLES_PATH)/Examples/lib/libmuparserx.a
 COMP = main.o
 
 .PHONY = clean distclean
