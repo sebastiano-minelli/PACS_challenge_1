@@ -15,11 +15,6 @@ int main()
 
   ParameterHandler<DIM> param("data.txt"); // parameters
 
-
-  double a = -9;
-  double b = 5;
-
-  std::cout << "val abs: " << abs(a - b) << std::endl;
   param.show_data();
 
   MinMethodGradient<DIM> min_method(param);

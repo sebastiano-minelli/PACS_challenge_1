@@ -12,10 +12,10 @@ template <unsigned int DIM>
 class StepCoefficientArmijo : public StepCoefficientBase<DIM>
 {
 public:
-    StepCoefficientArmijo(ParameterHandler<DIM> & param) : StepCoefficientBase<DIM>(param)
+    StepCoefficientArmijo(const ParameterHandler<DIM> & param) : StepCoefficientBase<DIM>(param)
     {};
 
-    double compute_alpha_k(const unsigned int step) override
+    double compute_alpha_k(const unsigned int step, std::array<double, DIM> point) const override
     {
         const unsigned int n_max_it = 10000; // maximum number of iterations
         unsigned int it = 0; // iterations
@@ -28,7 +28,7 @@ public:
         std::array<double, DIM> y;
 
         double L2norm = 0.0;
-        std::vector<double> grad_eval = this->m_param.compute_gradient();
+        std::vector<double> grad_eval = this->m_param.compute_gradient(point);
         
         for(size_t i = 0; i < DIM; ++i)
             L2norm += grad_eval[i] * grad_eval[i];

@@ -7,14 +7,14 @@ template <unsigned int DIM>
 class StepCoefficientBase
 {
 public:
-    StepCoefficientBase(ParameterHandler<DIM>& param) : m_param(param) {};
+    StepCoefficientBase(const ParameterHandler<DIM>& param) : m_param(param) {};
 
     virtual ~StepCoefficientBase() = default;
 
     // compute the step parameter alpha_k
-    virtual double compute_alpha_k(const unsigned int step) = 0;
+    virtual double compute_alpha_k(const unsigned int step, std::array<double, DIM> point = {}) const = 0;
 
-    ParameterHandler<DIM> m_param;
+    const ParameterHandler<DIM> m_param;
 };
 
 #endif

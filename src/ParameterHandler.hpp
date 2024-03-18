@@ -14,20 +14,20 @@ public:
     {};
 
     // function that handles automatically the analytic or numeric gradient
-    std::vector<double> compute_gradient()
+    const std::vector<double> compute_gradient(const std::array<double, DIM> point) const
     {
         std::vector<double> dfun_eval(DIM, 0.0);
         
         if(!this->coefficients.compute_num_grad)
         {
             for(size_t i = 0; i < DIM; ++i)
-                dfun_eval[i] = this->function_param.dfun[i](this->function_param.x);
+                dfun_eval[i] = this->function_param.dfun[i](point);
         }else
         {
             for(size_t i = 0; i < DIM; ++i)
             {
-                std::array<double, DIM> x_plus = this->function_param.x;
-                std::array<double, DIM> x_minus = this->function_param.x;
+                std::array<double, DIM> x_plus = point;
+                std::array<double, DIM> x_minus = point;
                 x_plus[i] += this->coefficients.h;
                 x_minus[i] -= this->coefficients.h;
                 dfun_eval[i] = (this->function_param.fun(x_plus) - this->function_param.fun(x_minus)) /  (2 * this->coefficients.h);

@@ -14,7 +14,7 @@ template<unsigned int DIM>
 class StepCoefficientHandler
 {
 public:
-    StepCoefficientHandler(ParameterHandler<DIM> & param) : m_param(param)
+    StepCoefficientHandler(const ParameterHandler<DIM> & param) : m_param(param)
     {
         if(m_param.step_coeff_method.coeff_solver == "Exponential")
             m_step_coeff_method = std::make_shared<StepCoefficientExp<DIM>>(param);
@@ -24,13 +24,13 @@ public:
             m_step_coeff_method = std::make_shared<StepCoefficientArmijo<DIM>>(param);
     };
 
-    const double get_alpha_k(const unsigned int k) const
+    const double get_alpha_k(const unsigned int k, const std::array<double, DIM>& point) const
     {
-        return m_step_coeff_method->compute_alpha_k(k);
+        return m_step_coeff_method->compute_alpha_k(k, point);
     }
     
-private:
-    ParameterHandler<DIM> m_param;
+    
+    const ParameterHandler<DIM> m_param;
     std::shared_ptr<StepCoefficientBase<DIM>> m_step_coeff_method;
 
 };

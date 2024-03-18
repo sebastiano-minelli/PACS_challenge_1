@@ -8,14 +8,14 @@
     max_it = 10000
 
     ### Tolerance for the residual
-    tol_res = 1e-9
+    tol_res = 1e-6
 
     ### Tolerance for the argument (evaluated in L2 norm) 
-    tol_x = 1e-9
+    tol_x = 1e-6
 
     ### Bool to decide to compute the function gradient numerically (otherwise please define it in this file)
     # true = 1, false = 0 #
-    compute_num_grad = 0     
+    compute_num_grad = 1     
 
     ### Incremental step to evaluate the numerical derivative (if the option was selected)
     h = 0.0001
@@ -53,7 +53,7 @@
 
     [./Method_Options]
         ### Coefficient used at the first iteration of the minimization method
-        alpha_zero = 0.09
+        alpha_zero = 0.1
 
         ### Parameter for the step coefficient method (needed just for 'InverseDecay' and 'Exponential' method)
         mu = 0.2
