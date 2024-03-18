@@ -1,38 +1,68 @@
 #-------------------------------------------------
-# Solver Options
+# -----------------Solver Options-----------------
 #-------------------------------------------------
+
 [Parameters]
+
+    ### Maximum number of iterations
     max_it = 1000
+
+    ### Tolerance for the residual
     tol_res = 1e-6
+
+    ### Tolerance for the argument (evaluated in L2 norm) 
     tol_x = 1e-6
-    compute_num_grad = 0  # 1=true, 0=false
+
+    ### Bool to decide to compute the function gradient numerically (otherwise please define it in this file)
+    # true = 1, false = 0 #
+    compute_num_grad = 0     
+
+    ### Incremental step to evaluate the numerical derivative (if the option was selected)
     h = 0.0001
+
 [../]
 
 [Functions]
+
+    ### Function (indicate variables as x[*] where * goes from 0 to DIM - 1)
     fun = 'x[0] * x[1] + 4 * x[0] * x[0] * x[0] * x[0] + x[1] * x[1] + 3 * x[0]'
+
+    ### Gradient of the function (a new gradient scalar term can be inserted providing 'grad_fun_*' on a new line)
     grad_fun_1 = 'x[1] + 16 * x[0] * x[0] * x[0] + 3'
     grad_fun_2 = 'x[0] + 2 * x[1]'
     grad_fun_3 = '1'
+
+    ### Initial point for the evaluation (a new argument scalar term can be inserted providing 'x_*' on a new line)
     x_1 = 0.0
     x_2 = 0.0
     x_3 = 0.0
+
 [../]
 
 [Solver_Type]
-# just GradientMethod for now
+
+    ### Minimization method to use
+    # possible options are: 'GradientMethod' #
     solver_type = 'GradientMethod'
+
 [../]
 
 [Compute_Coefficient_Method]
-# we have: 'Exponential', 'InverseDecay', 'Armijo'
+
+    ### Method to use to compute the new step coefficient at every iteration
+    # possible options are: 'Exponential', 'InverseDecay', 'Armijo' #
     coeff_solver = 'InverseDecay'
 
     [./Method_Options]
+        ### Coefficient used at the first iteration of the minimization method
         alpha_zero = 1.0
-        # mu is needed just for the inverse decay and exponential method
+
+        ### Parameter for the step coefficient method (needed just for 'InverseDecay' and 'Exponential' method)
         mu = 0.2
-        # sigma is needed just for the Armijo rule
+
+        ### Parameter for the step coefficient method (needed just for 'Armijo')
         sigma = 0.5
+
     [../]
+
 [../]
