@@ -6,7 +6,7 @@
 #include "GetPot"
 #include "ParameterHandler.hpp"
 #include "StepCoefficientHandler.hpp"
-#include "MinMethodGradient.hpp"
+#include "MinMethodHandler.hpp"
 
 int main()
 {
@@ -17,9 +17,9 @@ int main()
 
   param.show_data();
 
-  MinMethodGradient<DIM> min_method(param);
+  MinMethodHandler<DIM> min_method(param);
 
-  std::array<double, DIM> min = min_method.compute_min();
+  std::array<double, DIM> min = min_method.get_min();
 
   std::cout << "The minimum is:" << std::endl;
   for(size_t i = 0; i < DIM; ++i)

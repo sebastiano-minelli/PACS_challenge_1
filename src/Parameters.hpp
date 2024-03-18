@@ -88,8 +88,8 @@ public:
     
 
     section = "Solver_Type/";
-    min_method.solver_type = datafile((section + "solver_type").data(), "GradientMethod"); // Solver choice
-
+    min_method.solver_type = datafile((section + "solver_type").data(), "Gradient"); // Solver choice
+ 
     section = "Compute_Coefficient_Method/";
     step_coeff_method.coeff_solver = datafile((section + "coeff_solver").data(), "Exponential"); // Step coefficient choice
     step_coeff_method.alpha_zero = datafile((section + "Method_Options/" + "alpha_zero").data(), 0.5); //alpha zero

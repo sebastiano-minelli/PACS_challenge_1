@@ -40,8 +40,8 @@
 [Solver_Type]
 
     ### Minimization method to use
-    # possible options are: 'GradientMethod' #
-    solver_type = 'GradientMethod'
+    # possible options are: 'Gradient', 'HeavyBall', 'Nesterov' #
+    solver_type = 'HeavyBall'
 
 [../]
 
