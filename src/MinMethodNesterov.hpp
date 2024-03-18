@@ -57,13 +57,14 @@ public:
 
             grad_k = this->m_param.compute_gradient(y);
 
-            for(size_t j = 0; j < DIM; ++j)
-              xnew[j] = y[j] - alpha_k * grad_k[j];
-            
-            // compute L2 x norm
             x_norm = 0.0;
-            for(size_t z = 0; z < DIM; ++z)
-                x_norm += (xnew[z] - xold[z]) * (xnew[z] - xold[z]);
+            for(size_t j = 0; j < DIM; ++j)
+            {  
+                xnew[j] = y[j] - alpha_k * grad_k[j];
+            
+                // compute L2 x norm
+                x_norm += (xnew[j] - xold[j]) * (xnew[j] - xold[j]);
+            }
             x_norm = sqrt(x_norm);
 
             // compute residue

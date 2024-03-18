@@ -7,6 +7,7 @@
 #include "MinMethodGradient.hpp"
 #include "MinMethodHeavyBall.hpp"
 #include "MinMethodNesterov.hpp"
+#include "MinMethodAdam.hpp"
 #include <string>
 #include <memory>
 #include <iostream>
@@ -29,6 +30,8 @@ public:
                 m_method_type = std::make_shared<MinMethodHeavyBall<DIM>>(param);
             if(m_param.min_method.solver_type == "Nesterov")
                 m_method_type = std::make_shared<MinMethodNesterov<DIM>>(param);
+            if(m_param.min_method.solver_type == "Adam")
+                m_method_type = std::make_shared<MinMethodAdam<DIM>>(param);
         }
     };
 

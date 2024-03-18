@@ -5,7 +5,7 @@
 [Parameters]
 
     ### Maximum number of iterations
-    max_it = 10000
+    max_it = 1000
 
     ### Tolerance for the residual
     tol_res = 1e-6
@@ -40,7 +40,7 @@
 [Solver_Type]
 
     ### Minimization method to use
-    # possible options are: 'Gradient', 'HeavyBall', 'Nesterov' #
+    # possible options are: 'Gradient', 'HeavyBall', 'Nesterov', 'Adam' #
     solver_type = 'Gradient'
 
 [../]
@@ -49,7 +49,7 @@
 
     ### Method to use to compute the new step coefficient at every iteration
     # possible options are: 'Exponential', 'InverseDecay', 'Armijo' #
-    coeff_solver = 'Armijo'
+    coeff_solver = 'InverseDecay'
 
     [./Method_Options]
         ### Coefficient used at the first iteration of the minimization method
