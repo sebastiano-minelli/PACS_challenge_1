@@ -19,7 +19,7 @@ public:
     MinMethodHandler(const ParameterHandler<DIM> & param) : m_param(param)
     {
         if(m_param.min_method.solver_type == "Gradient")
-            m_method_type = std::make_shared<MinMethodGradient<DIM>>(param);
+            m_method_type = std::make_unique<MinMethodGradient<DIM>>(param);
         else
         {
             if(m_param.step_coeff_method.coeff_solver == "Armijo")
@@ -27,11 +27,11 @@ public:
                 exit(1);
             }
             if(m_param.min_method.solver_type == "HeavyBall")
-                m_method_type = std::make_shared<MinMethodHeavyBall<DIM>>(param);
+                m_method_type = std::make_unique<MinMethodHeavyBall<DIM>>(param);
             if(m_param.min_method.solver_type == "Nesterov")
-                m_method_type = std::make_shared<MinMethodNesterov<DIM>>(param);
+                m_method_type = std::make_unique<MinMethodNesterov<DIM>>(param);
             if(m_param.min_method.solver_type == "Adam")
-                m_method_type = std::make_shared<MinMethodAdam<DIM>>(param);
+                m_method_type = std::make_unique<MinMethodAdam<DIM>>(param);
         }
     };
 
@@ -42,7 +42,7 @@ public:
     
     
     const ParameterHandler<DIM> m_param;
-    std::shared_ptr<MinMethodBase<DIM>> m_method_type;
+    std::unique_ptr<MinMethodBase<DIM>> m_method_type;
 
 };
 

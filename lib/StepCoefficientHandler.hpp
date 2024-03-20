@@ -17,11 +17,11 @@ public:
     StepCoefficientHandler(const ParameterHandler<DIM> & param) : m_param(param)
     {
         if(m_param.step_coeff_method.coeff_solver == "Exponential")
-            m_step_coeff_method = std::make_shared<StepCoefficientExp<DIM>>(param);
+            m_step_coeff_method = std::make_unique<StepCoefficientExp<DIM>>(param);
         if(m_param.step_coeff_method.coeff_solver == "InverseDecay")
-            m_step_coeff_method = std::make_shared<StepCoefficientInvDecay<DIM>>(param);
+            m_step_coeff_method = std::make_unique<StepCoefficientInvDecay<DIM>>(param);
         if(m_param.step_coeff_method.coeff_solver == "Armijo")
-            m_step_coeff_method = std::make_shared<StepCoefficientArmijo<DIM>>(param);
+            m_step_coeff_method = std::make_unique<StepCoefficientArmijo<DIM>>(param);
     };
 
     const double get_alpha_k(const unsigned int k, const std::array<double, DIM>& point) const
@@ -31,7 +31,7 @@ public:
     
     
     const ParameterHandler<DIM> m_param;
-    std::shared_ptr<StepCoefficientBase<DIM>> m_step_coeff_method;
+    std::unique_ptr<StepCoefficientBase<DIM>> m_step_coeff_method;
 
 };
 
