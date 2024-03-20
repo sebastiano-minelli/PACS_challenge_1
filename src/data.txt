@@ -15,7 +15,7 @@
 
     ### Bool to decide to compute the function gradient numerically (otherwise please define it in this file)
     # true = 1, false = 0 #
-    compute_num_grad = 1     
+    compute_num_grad = 0
 
     ### Incremental step to evaluate the numerical derivative (if the option was selected)
     h = 0.0001
