@@ -13,11 +13,11 @@ Remember to properly set the function, its gradient and the initial point inside
 
 **Code features**
 - The user can choose different minimization techniques to compute the minimum: Gradient, Heavy ball, Nesterov and Adam methods are implemented.
-- The update of the step coefficient can be set usign different strategies: Exponential, Inverse decay and Armijo strategies are implemented.
+- The update of the step coefficient can be set using different strategies: Exponential, Inverse decay and Armijo strategies are implemented.
 - One could choose not to provide a gradient for the function, in that case the gradient is computed numerically using a central different scheme. In this case an incremental step has to be provided
 
-**useful note**
-Indeed changing the method provides slightly different results, in particular the step coefficient alpha0, the maximum number of iterations and the tolerances are crucial for the method to converge to the right solution. A bit of tuning might be necessary to obtain the right result.
+**useful note**:
+Indeed changing the method provides slightly different results, in particular the step coefficient $\alpha_0$, the maximum number of iterations and the tolerances are crucial for the method to converge to the right solution. A bit of tuning might be necessary to obtain the right result.
 Some good alpha0 choises are commented inside *data.txt* 
 
 
