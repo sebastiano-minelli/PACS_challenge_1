@@ -1,8 +1,8 @@
 ### First challenge
 This is the folder containing code for first challenge of PACS course, there are three folders:
-**doc** it contains just the challenge pdf
-**lib** it contains all the *.hpp files that are used by the program
-**src** it contains main.cpp and the Makefile to run the program
+- **doc** it contains just the challenge pdf
+- **lib** it contains all the *.hpp files that are used by the program
+- **src** it contains main.cpp and the Makefile to run the program
 
 The program relies on muParserX that is implemented in the avaiable git folder pacs-examples/
 To compile the program change **PACS_EXAMPLES_PATH** variable inside *Makefile* to set the right path to your local pacs-examples/ folder.
