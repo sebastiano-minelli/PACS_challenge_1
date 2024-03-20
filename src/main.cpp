@@ -10,8 +10,7 @@
 
 int main()
 {
-
-  static constexpr unsigned int DIM = 2; // Domain dimension R^DIM
+  constexpr unsigned int DIM = 2; // Domain dimension (i.e. R^DIM)
 
   ParameterHandler<DIM> param("data.txt"); // parameters
 
@@ -21,6 +20,7 @@ int main()
 
   std::array<double, DIM> min = min_method.get_min();
 
+  // Print minimum
   std::cout << "The minimum is:" << std::endl;
   for(size_t i = 0; i < DIM; ++i)
     std::cout << "{" << i + 1 << "}: " << min[i] << std::endl;

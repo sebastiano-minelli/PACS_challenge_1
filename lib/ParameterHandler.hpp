@@ -65,6 +65,7 @@ public:
         std::cout << "- Step coefficient alpha_0:     '" << this->step_coeff_method.alpha_zero << "'" << "\n" << std::endl;
         std::cout << "- Step coefficient mu:          '" << this->step_coeff_method.mu << "'" << "\n" << std::endl;
         std::cout << "- Step coefficient sigma:       '" << this->step_coeff_method.sigma << "'" << "\n" << std::endl;
+        std::cout << "---------------------------------------------- \n" << std::endl;
     };
 };
 

@@ -3,7 +3,7 @@ PACS_EXAMPLES_PATH=../../../../pacs-examples
 
 CXX      ?= g++
 CXXFLAGS ?= -std=c++20
-CPPFLAGS ?= -O5 -Wall -I. -I../lib -Wno-conversion-null -Wno-deprecated-declarations -I$(PACS_EXAMPLES_PATH)/Examples/include/muparserx
+CPPFLAGS ?= -O3 -Wall -I. -I../lib -Wno-conversion-null -Wno-deprecated-declarations -I$(PACS_EXAMPLES_PATH)/Examples/include/muparserx
 
 EXEC = main
 OBJECT = main.cpp

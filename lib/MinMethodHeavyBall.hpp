@@ -28,15 +28,9 @@ public:
         double x_norm = std::numeric_limits<double>::infinity(); // to enter loop
         double res = std::numeric_limits<double>::infinity(); // to enter loop
         
-        // compute eta = (1 - alpha_k) if alpha_k < 1, eta = 0.9 otherwise
-        constexpr double ETA_STD_VALUE = 0.9;
-        double eta = ETA_STD_VALUE;
-        if(alpha_k < 1)
-            eta = 1 - alpha_k;
-        else
-            eta = ETA_STD_VALUE;
+        constexpr double eta = 0.9; // eta parameter
 
-        // just to improve readability
+        // just to improve readability make a copy
         const unsigned int max_it = this->m_param.coefficients.max_it;
         const double tol_res = this->m_param.coefficients.tol_res;
         const double tol_x = this->m_param.coefficients.tol_x;
@@ -45,13 +39,10 @@ public:
         for(size_t k = 2; k < max_it && res > tol_res && x_norm > tol_x; ++k)
         {
             alpha_k = this->m_step_handl.get_alpha_k(k - 1, xold);
-            if(alpha_k < 1)
-                eta = 1 - alpha_k;
-            else
-                eta = ETA_STD_VALUE;
+            
             grad_k = this->m_param.compute_gradient(xold);
 
-             x_norm = 0.0;
+            x_norm = 0.0;
             for(size_t j = 0; j < DIM; ++j)
             {  
                 xnew[j] = xold[j] - alpha_k * grad_k[j] + eta * (xold[j] - xold_old[j]);
