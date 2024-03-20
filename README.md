@@ -18,7 +18,7 @@ Remember to properly set the function, its gradient and the initial point inside
 
 **useful note**:
 Indeed changing the method provides slightly different results, in particular the step coefficient $\alpha_0$, the maximum number of iterations and the tolerances are crucial for the method to converge to the right solution. A bit of tuning might be necessary to obtain the right result.
-Some good alpha0 choises are commented inside *data.txt* 
+Some good $\alpha_0$ choices are commented inside *data.txt* 
 
 
 
