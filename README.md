@@ -4,11 +4,11 @@ This is the folder containing code for first challenge of PACS course, there are
 - **lib** it contains all the *.hpp files that are used by the program
 - **src** it contains main.cpp and the Makefile to run the program
 
-The program relies on muParserX that is implemented in the avaiable git folder pacs-examples/
+The program relies on muParserX that is implemented in the avaiable git folder pacs-examples/.
 To compile the program change **PACS_EXAMPLES_PATH** variable inside *Makefile* to set the right path to your local pacs-examples/ folder.
 
-All parameters are passed by the user through the text file **data.txt** (and then read by the program using GetPot)
-This is true for every possible variable **except** for the domain dimension **DIM**. Currently the program is set with *DIM=2*, to modify it change the variable **DIM** inside *main.cpp* and **recompile** everything using *Makefile*
+All parameters are passed by the user through the text file **data.txt** (and then read by the program using GetPot).
+This is true for every possible variable **except** for the domain dimension **DIM**. Currently the program is set with *DIM=2*, to modify it change the variable **DIM** inside *main.cpp* and **recompile** everything using *Makefile*.
 Remember to properly set the function, its gradient and the initial point inside *data.txt* if you change **DIM**
 
 **Code features**
