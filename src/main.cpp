@@ -1,11 +1,7 @@
 #include<iostream>
 #include<string>
-#include<vector>
-#include<memory>
-#include "muParserXInterface.hpp"
 #include "GetPot"
 #include "ParameterHandler.hpp"
-#include "StepCoefficientHandler.hpp"
 #include "MinMethodHandler.hpp"
 
 int main()

@@ -41,6 +41,7 @@ public:
     }
     
     
+private:
     const ParameterHandler<DIM> m_param;
     std::unique_ptr<MinMethodBase<DIM>> m_method_type;
 
