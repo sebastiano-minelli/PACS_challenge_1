@@ -1,4 +1,4 @@
-### change PACS_EXAMPLES_PATH pasting your machine path to 'pacs-examples' git folder
+### change PACS_EXAMPLES_PATH pasting your machine path to 'pacs-examples/' git folder
 PACS_EXAMPLES_PATH=../../../../pacs-examples
 
 CXX      ?= g++
