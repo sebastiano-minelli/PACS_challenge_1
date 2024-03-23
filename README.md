@@ -5,7 +5,7 @@ This is the folder containing code for first challenge of PACS course, there are
 - **src**: it contains *main.cpp* and the *Makefile* to run the program
 
 **How to run**  
-The program relies on muParserX that is implemented in the avaiable git folder *pacs-examples/* and uses the header *muParserXInterface.hpp*.  
+The program relies on muParserX that is implemented in the available git folder *pacs-examples/* and uses the header *muParserXInterface.hpp*.  
 To compile the program just change **PACS_EXAMPLES_PATH** variable inside *Makefile* to set the right path to your local *pacs-examples/* folder.
 
 All parameters are passed by the user through the text file *data.txt* (and then read by the program using GetPot).  
