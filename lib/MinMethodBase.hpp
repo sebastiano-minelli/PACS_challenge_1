@@ -13,7 +13,7 @@ public:
     MinMethodBase(const ParameterHandler<DIM>& param) : m_param(param), m_step_handl(param) {};
     virtual ~MinMethodBase() = default;
 
-    virtual std::array<double, DIM> compute_min() const = 0;
+    virtual const std::array<double, DIM> compute_min() const = 0;
 
     const ParameterHandler<DIM> m_param;
     const StepCoefficientHandler<DIM> m_step_handl;

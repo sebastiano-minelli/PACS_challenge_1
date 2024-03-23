@@ -23,7 +23,8 @@ public:
         else
         {
             if(m_param.step_coeff_method.coeff_solver == "Armijo")
-            {    std::cerr << "Cannot use Armijo with any method but 'Gradient'" << std::endl;
+            {   
+                std::cerr << "Cannot use Armijo with any method but 'Gradient'" << std::endl;
                 exit(1);
             }
             if(m_param.min_method.solver_type == "HeavyBall")
@@ -35,7 +36,7 @@ public:
         }
     };
 
-    std::array<double, DIM> get_min() const
+    const std::array<double, DIM> get_min() const
     {
         return m_method_type->compute_min();
     }

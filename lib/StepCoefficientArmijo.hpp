@@ -15,7 +15,7 @@ public:
     StepCoefficientArmijo(const ParameterHandler<DIM> & param) : StepCoefficientBase<DIM>(param)
     {};
 
-    double compute_alpha_k(const unsigned int step, std::array<double, DIM> point) const override
+    const double compute_alpha_k(const unsigned int step, std::array<double, DIM> point) const override
     {
         const unsigned int n_max_it = 10000; // maximum number of iterations
         unsigned int it = 0; // iterations

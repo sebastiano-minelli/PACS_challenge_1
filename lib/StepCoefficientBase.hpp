@@ -12,7 +12,7 @@ public:
     virtual ~StepCoefficientBase() = default;
 
     // compute the step parameter alpha_k
-    virtual double compute_alpha_k(const unsigned int step, std::array<double, DIM> point = {}) const = 0;
+    virtual const double compute_alpha_k(const unsigned int step, std::array<double, DIM> point = {}) const = 0;
 
     const ParameterHandler<DIM> m_param;
 };

@@ -8,13 +8,13 @@ int main()
 {
   constexpr unsigned int DIM = 2; // Domain dimension (i.e. R^DIM)
 
-  ParameterHandler<DIM> param("data.txt"); // parameters
+  const ParameterHandler<DIM> param("data.txt"); // parameters
 
   param.show_data();
 
-  MinMethodHandler<DIM> min_method(param);
+  const MinMethodHandler<DIM> min_method(param);
 
-  std::array<double, DIM> min = min_method.get_min();
+  const std::array<double, DIM> min = min_method.get_min();
 
   // Print minimum
   std::cout << "The minimum is:" << std::endl;

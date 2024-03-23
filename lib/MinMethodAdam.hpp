@@ -14,7 +14,7 @@ public:
     MinMethodAdam(const ParameterHandler<DIM>& param) : MinMethodBase<DIM>(param) 
     {};
 
-    std::array<double, DIM> compute_min() const override
+    const std::array<double, DIM> compute_min() const override
     {
         std::array<double, DIM> xold{this->m_param.function_param.x};
         std::array<double, DIM> xnew{};

@@ -14,7 +14,7 @@ public:
     MinMethodNesterov(const ParameterHandler<DIM>& param) : MinMethodBase<DIM>(param) 
     {};
 
-    std::array<double, DIM> compute_min() const override
+    const std::array<double, DIM> compute_min() const override
     {
         // initialize method
         double alpha_k = this->m_param.step_coeff_method.alpha_zero; // alpha0
