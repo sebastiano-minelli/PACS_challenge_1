@@ -1,0 +1,10 @@
+Correct use of GitHub.
+README is very detailed and complete.
+
+I have appreciated the suggestions for the parameters values inside the file data.txt.
+
+You could rely on the std library methods for operations on vectors.
+
+The code is well organized and commented.
+
+Well done with the classes and polymorphism.
